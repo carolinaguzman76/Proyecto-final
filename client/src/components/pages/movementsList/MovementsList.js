@@ -1,34 +1,34 @@
 import React, { Component } from 'react'
 
-import './MovimenstList.css'
+import './MovemenstList.css'
 
-import MovimentsServices from '../../../services/moviment.services'
+import MovementsServices from '../../../services/movement.services'
 
-import MovimentForm from '../movimentForm/MovimentForm'
-import MovimentCard from '../movimentCard/MovimentCard'
+import MovementForm from '../movementForm/MovementForm'
+import MovementCard from '../movementCard/MovementCard'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 
-class MovimentsList extends Component {
+class MovementsList extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            moviments: [],
+            movements: [],
             showmodal: false
         }
-        this.services = new MovimentsServices()
+        this.services = new MovementsServices()
     }
 
-    componentDidMount = () => this.getAllMoviments()
+    componentDidMount = () => this.getAllMovements()
 
-    getAllMoviments = () => {
-        this.services.getAllMoviments()
-            .then(allMoviments => {
-                this.setState({ moviments: allMoviments })})
+    getAllMovements = () => {
+        this.services.getAllMovements()
+            .then(allMovements => {
+                this.setState({ movements: allMovements })})
             .catch(err => console.log(err))
     }
 
@@ -45,9 +45,9 @@ class MovimentsList extends Component {
 
                 {this.props.loggedInUser && <Button className="mb-20" variant="dark" onClick={this.openModal}>Alta nuevo movimiento</Button>}
 
-                {this.state.moviments.length ? (
+                {this.state.movements.length ? (
                     <Row>
-                        {this.state.moviments.map(elm => <MovimentCard key={elm._id} {...elm} />)}
+                        {this.state.movements.map(elm => <MovementCard key={elm._id} {...elm} />)}
                     </Row>
                 )
                     :
@@ -59,7 +59,7 @@ class MovimentsList extends Component {
                     <Modal.Body>
                         <h3>Nuevo movimiento</h3>
                         <hr></hr>
-                        <MovimentForm closeModal={this.closeModal} refreshList={this.getAllMoviments} />
+                        <MovementForm closeModal={this.closeModal} refreshList={this.getAllMovements} />
                     </Modal.Body>
                 </Modal>
 
@@ -68,4 +68,4 @@ class MovimentsList extends Component {
     }
 }
 
-export default MovimentsList
+export default MovementsList

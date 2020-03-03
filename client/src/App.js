@@ -11,7 +11,8 @@ import Signup from './components/pages/auth/signup/Signup'
 import Profile from './components/pages/profile/Profile'
 import Login from './components/pages/auth/login/Login'
 
-import MovimientsList from './components/pages/movimentsList/MovimentsList'
+import MovimientsList from './components/pages/movementsList/MovementsList'
+import MovementDetails from './components/pages/movementDetails/MovementDetails'
 
 import AuthServices from './services/auth.services'
 
@@ -44,7 +45,8 @@ class App extends Component {
 
         <Switch>
           <Route path="/list" render={() => <MovimientsList loggedInUser={this.state.loggedInUser} />} />
-          <Route path="/budget" render={() => <budgetsList loggedInUser={this.state.loggedInUser} />} />
+          <Route path="/details/:id" render={props => <MovementDetails {...props} />} />
+          {/* <Route path="/budget" render={() => <BudgetsList loggedInUser={this.state.loggedInUser} />} /> */}
           <Route path="/signup" render={() => <Signup setTheUser={this.setTheUser} />} />
           <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
           <Route path="/profile" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to="/" />} />

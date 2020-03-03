@@ -4,6 +4,7 @@ const Schema = mongoose.Schema
 const movementSchema = new Schema({
     name: String,
     description: String,
+    amount: Number,
     category: String,
     date: Date,
     typePayment: String,

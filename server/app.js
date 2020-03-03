@@ -21,7 +21,7 @@ const index = require('./routes/index');
 app.use('/', index);
 app.use('/api/auth', require('./routes/auth.routes'))
 app.use('/api/auth', require('./routes/auth.routes'))
-app.use('/api/moviments', require('./routes/moviments.routes'))
+app.use('/api/movements', require('./routes/movements.routes'))
 
 // Esto se puede quitar?
 // app.set('views', path.join(__dirname, 'views'));
