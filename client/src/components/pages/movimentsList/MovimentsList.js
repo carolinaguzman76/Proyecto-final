@@ -27,7 +27,8 @@ class MovimentsList extends Component {
 
     getAllMoviments = () => {
         this.services.getAllMoviments()
-            .then(allMoviments => this.setState({ moviments: allMoviments }))
+            .then(allMoviments => {
+                this.setState({ moviments: allMoviments })})
             .catch(err => console.log(err))
     }
 
@@ -40,7 +41,7 @@ class MovimentsList extends Component {
         return (
             <Container>
 
-                <h1>Aqui tiene que mostrar una lista de movientos</h1>
+                <h1>Aqui tiene que mostrar una lista de movimientos</h1>
 
                 {this.props.loggedInUser && <Button className="mb-20" variant="dark" onClick={this.openModal}>Alta nuevo movimiento</Button>}
 

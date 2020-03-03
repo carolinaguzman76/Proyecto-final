@@ -24,7 +24,7 @@ class App extends Component {
   }
 
 
-  componentDidUpdate = (prevProps, prevState) => console.log("El estado de App se ha actualizado:", this.state)
+  // componentDidUpdate = (prevProps, prevState) => console.log("El estado de App se ha actualizado:", this.state)
   componentDidMount = () => this.fetchUser()
 
 
@@ -44,6 +44,7 @@ class App extends Component {
 
         <Switch>
           <Route path="/list" render={() => <MovimientsList loggedInUser={this.state.loggedInUser} />} />
+          <Route path="/budget" render={() => <budgetsList loggedInUser={this.state.loggedInUser} />} />
           <Route path="/signup" render={() => <Signup setTheUser={this.setTheUser} />} />
           <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
           <Route path="/profile" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to="/" />} />

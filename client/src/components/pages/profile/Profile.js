@@ -15,6 +15,14 @@ const Profile = props => {
                 <Button className="mb-20" variant="dark" href="/list">Movimientos</Button>
 
             </Container>
+
+            <Container>
+
+                <h2>Aqui debe ir la grafica de los presupuestos</h2>
+
+                <Button className="mb-20" variant="dark" href="/budget">Presupuestos</Button>
+
+            </Container>
         </>
     )
 }

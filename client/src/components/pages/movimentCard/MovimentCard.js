@@ -3,10 +3,10 @@ import React from 'react'
 import './MovimentCard.css'
 
 import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
+// import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 const MovimentCard = ({ name, _id }) => {
     return (
@@ -15,9 +15,9 @@ const MovimentCard = ({ name, _id }) => {
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
                     <hr></hr>
-                    <Button as="div" variant="dark" size="sm">
+                    {/* <Button as="div" variant="dark" size="sm">
                         <Link to={`/detalles/${_id}`}>Detalles</Link>
-                    </Button>
+                    </Button> */}
                 </Card.Body>
             </Card>
         </Col>

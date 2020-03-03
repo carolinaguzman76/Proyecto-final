@@ -4,9 +4,9 @@ const Schema = mongoose.Schema
 const movementSchema = new Schema({
     name: String,
     description: String,
-    category: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
+    category: String,
     date: Date,
-    typePayment: [{ type: Schema.Types.ObjectId, ref: 'TypePayment' }],
+    typePayment: String,
     image: String
 }, {
     timestamps: true
