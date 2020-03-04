@@ -49,6 +49,7 @@ class Navigation extends Component {
                                 <Nav.Link as="div"> <Link to="/">Inicio</Link></Nav.Link>
                                 <Nav.Link as="div"> <Link to="/profile">Perfil</Link></Nav.Link>
                                 <Nav.Link as="div"> <Link to="/list">Movimientos</Link></Nav.Link>
+                                <Nav.Link as="div"> <Link to="/categoriesList">Categorias</Link></Nav.Link>
                                 <Nav.Link onClick={this.logout}>Cerrar sesión</Nav.Link>
                                 <Nav.Link as="small">{greeting}</Nav.Link>
                             </Nav>

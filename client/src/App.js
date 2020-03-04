@@ -11,6 +11,8 @@ import Signup from './components/pages/auth/signup/Signup'
 import Profile from './components/pages/profile/Profile'
 import Login from './components/pages/auth/login/Login'
 
+import CategoriesList from './components/pages/categoriesList/CategoriesList'
+
 import MovimientsList from './components/pages/movementsList/MovementsList'
 import MovementDetails from './components/pages/movementDetails/MovementDetails'
 
@@ -44,6 +46,7 @@ class App extends Component {
         <NavBar setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
 
         <Switch>
+          <Route path="/categoriesList" render={() => <CategoriesList loggedInUser={this.state.loggedInUser} />} />
           <Route path="/list" render={() => <MovimientsList loggedInUser={this.state.loggedInUser} />} />
           <Route path="/details/:id" render={props => <MovementDetails {...props} />} />
           {/* <Route path="/budget" render={() => <BudgetsList loggedInUser={this.state.loggedInUser} />} /> */}

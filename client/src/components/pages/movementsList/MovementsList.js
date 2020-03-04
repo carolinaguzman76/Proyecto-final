@@ -20,6 +20,7 @@ class MovementsList extends Component {
             movements: [],
             showmodal: false
         }
+        //INSTANCIA DE LOS SERVICIOS DE MOVIMIENTOS
         this.services = new MovementsServices()
     }
 
@@ -43,11 +44,13 @@ class MovementsList extends Component {
 
                 <h1>Aqui tiene que mostrar una lista de movimientos</h1>
 
+                <Button className="mb-20" variant="dark" href="/categoriesList">Categorias</Button>
+
                 {this.props.loggedInUser && <Button className="mb-20" variant="dark" onClick={this.openModal}>Alta nuevo movimiento</Button>}
 
                 {this.state.movements.length ? (
                     <Row>
-                        {this.state.movements.map(elm => <MovementCard key={elm._id} {...elm} />)}
+                        {this.state.movements.map(elm => <MovementCard key={elm._id} {...elm} updatedList={this.getAllMovements} />)}
                     </Row>
                 )
                     :
