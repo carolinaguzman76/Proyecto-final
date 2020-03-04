@@ -35,6 +35,13 @@ class Navigation extends Component {
             this.props.loggedInUser ?
                 (
                     <Navbar bg="dark" expand="lg" variant="dark">
+                        <img
+                            src="../hucha.png"
+                            width="50"
+                            height="50"
+                            className="d-inline-block align-top"
+                            alt="React Bootstrap logo"
+                        />
                         <Navbar.Brand href="#home">Ahorra, coño!</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
