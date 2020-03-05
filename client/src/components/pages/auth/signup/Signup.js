@@ -26,8 +26,8 @@ class Signup extends Component {
     postUser = () => {
         this.services.signup(this.state)
             .then(theLoggedNewUser => {
-                this.setState({ username: '', password: '' })
                 this.props.setTheUser(theLoggedNewUser)
+                this.setState({ username: '', password: '' })
             })
             .catch(err => console.log({ err }))
     }
