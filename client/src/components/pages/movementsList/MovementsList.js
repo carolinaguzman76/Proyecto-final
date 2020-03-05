@@ -54,7 +54,7 @@ class MovementsList extends Component {
                     </Row>
                 )
                     :
-                    <p>CARGANDO...</p>
+                    <p>UN POQUITO DE PACIENCIA...</p>
 
                 }
 

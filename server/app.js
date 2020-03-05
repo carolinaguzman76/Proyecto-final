@@ -20,14 +20,14 @@ require('./configs/session.config')(app)
 const index = require('./routes/index');
 app.use('/', index);
 app.use('/api/auth', require('./routes/auth.routes'))
-app.use('/api/auth', require('./routes/auth.routes'))
+// app.use('/api/auth', require('./routes/auth.routes'))
 app.use('/api/movements', require('./routes/movements.routes'))
 app.use('/api/categories', require('./routes/categories.routes.js'))
 
 // Esto se puede quitar?
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'hbs');
-// app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+app.use(express.static(path.join(__dirname, 'public')));
 // app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 

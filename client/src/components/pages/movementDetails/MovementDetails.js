@@ -48,7 +48,7 @@ class MovementDetails extends Component {
                     </Col>
                 </Row>
                 <Button as="div" variant="dark" size="sm">
-                    <Link to="/">Volver</Link>
+                    <Link to="/list">Volver</Link>
                 </Button>
             </Container>
         )
