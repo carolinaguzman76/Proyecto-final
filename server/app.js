@@ -31,6 +31,10 @@ app.use('/api/categories', require('./routes/categories.routes.js'))
 // app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
+app.use((req, res) => {
+    res.sendFile(__dirname + "/public/index.html")
+})
+
 module.exports = app;
 
 

@@ -5,7 +5,6 @@ import './CategoriesList.css'
 import CategoriesServices from '../../../services/category.services'
 
 import CategoryForm from '../categoryForm/CategoryForm'
-// import MovementCard from '../movementCard/MovementCard'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -22,28 +21,29 @@ class CategoriesList extends Component {
         }
         this.services = new CategoriesServices()
     }
-
+    
     componentDidMount = () => this.getAllCategories()
-
+    
     getAllCategories = () => {
         this.services.getAllCategories()
-            .then(allCategories => {
-                this.setState({ categories: allCategories })
-            })
-            .catch(err => console.log(err))
+        .then(allCategories => {
+            this.setState({ categories: allCategories })
+        })
+        .catch(err => console.log(err))
     }
-
-    deleteOneCategory = () => {
-        this.services.deleteCategory(this.state.categories._id)
-            .then(() => this.getAllCategories())
-            .catch(err => console.log("error", err))
+    
+    deleteOneCategory = (id) => {
+        this.services.deleteCategory(id)
+        .then(() => this.getAllCategories())
+        .catch(err => console.log("error", err))
     }
-
+    
     // APERTURA Y CIERRE VENTANA MODAL
     closeModal = () => this.setState({ showmodal: false })
     openModal = () => this.setState({ showmodal: true })
-
+    
     render() { 
+        console.log(this.state.categories)
 
         return (
             <Container>
@@ -56,18 +56,10 @@ class CategoriesList extends Component {
 
                 {this.state.categories.length ? (
                     <Row>
-                        <ul>
-                            <li>
-                            <div>{this.state.categories.map((elm, idx) => <div key={idx}>{elm.name}</div>)}
-                            <Button as="div" variant="dark" size="sm" onClick={this.deleteOneCategory}>
-                             Eliminar
-                            </Button>
+                    
+                            <div>{this.state.categories.map((elm, idx) => <div style={{display: 'flex'}} key={idx}>{elm.name} <Button onClick={()=>this.deleteOneCategory(elm._id)}>Elimina</Button></div>)}
                             </div>
-                            </li>
                             
-                        </ul>
-                        
-
                     </Row>
                 )
                     :

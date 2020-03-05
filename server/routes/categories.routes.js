@@ -18,9 +18,9 @@ router.post('/categoryNew', (req, res, next) => {
 })
 
 // ELIMINAR UNA CATEGORIA
-router.get('/deleteCategory', (req, res, next) => {
-  Category.findByIdAndDelete(req.query.id)
-    .then(() => res.redirect('/getAllMovements'))
+router.get('/deleteCategory/:id', (req, res, next) => {
+  Category.findByIdAndDelete(req.params.id)
+    .then(() => res.json({status:'ok'}))
     .catch(err => next(new Error(err)))
 })
 

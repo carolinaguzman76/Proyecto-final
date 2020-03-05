@@ -4,7 +4,7 @@ export default class Services {
 
     constructor() {
         this.service = axios.create({
-            baseURL: 'http://localhost:5000/api/files',
+            baseURL: `${process.env.REACT_APP_URL}/categories`,
             withCredentials: true   // RUTAS PERSISTENTES
         })
     }
