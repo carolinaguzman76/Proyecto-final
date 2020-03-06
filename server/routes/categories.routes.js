@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const Category = require('../models/Category.model')
+const Budget = require('../models/Budget.model')
 
 // BUSQUEDA TODOS LAS CATEGORIAS
 router.get('/getAllCategories', (req, res, next) => {
@@ -10,11 +11,15 @@ router.get('/getAllCategories', (req, res, next) => {
   .catch(err => next(new Error(err)))
 })
 
-// ALTA NUEVA CATEGORIA
+// ALTA NUEVA CATEGORIA Y PRESUPUESTO CORRESPONDIENTE
 router.post('/categoryNew', (req, res, next) => {
   Category.create(req.body)
     .then(oneCategory => res.json(oneCategory))
     .catch(err => next(new Error(err)))
+    .then(Budget.create(req.body))
+    .then(oneBudget => res.json(oneBudget))
+    .catch(err => next(new Error(err)))
+  
 })
 
 // ELIMINAR UNA CATEGORIA
