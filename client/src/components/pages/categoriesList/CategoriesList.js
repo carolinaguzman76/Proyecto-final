@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 
 import './CategoriesList.css'
 
+// SERVICIO DE LAS CATEGORIAS
 import CategoriesServices from '../../../services/category.services'
 
 import CategoryForm from '../categoryForm/CategoryForm'
 
+// IMPORTACION COMPONENTES REACT BOOTSTRAP
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
@@ -19,13 +21,13 @@ class CategoriesList extends Component {
             categories: [],
             showmodal: false
         }
-        this.services = new CategoriesServices()
+        this.categoriesServices = new CategoriesServices()
     }
     
     componentDidMount = () => this.getAllCategories()
     
     getAllCategories = () => {
-        this.services.getAllCategories()
+        this.categoriesServices.getAllCategories()
         .then(allCategories => {
             this.setState({ categories: allCategories })
         })
@@ -33,7 +35,7 @@ class CategoriesList extends Component {
     }
     
     deleteOneCategory = (id) => {
-        this.services.deleteCategory(id)
+        this.categoriesServices.deleteCategory(id)
         .then(() => this.getAllCategories())
         .catch(err => console.log("error", err))
     }

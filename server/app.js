@@ -20,9 +20,9 @@ require('./configs/session.config')(app)
 const index = require('./routes/index');
 app.use('/', index);
 app.use('/api/auth', require('./routes/auth.routes'))
-// app.use('/api/auth', require('./routes/auth.routes'))
 app.use('/api/movements', require('./routes/movements.routes'))
-app.use('/api/categories', require('./routes/categories.routes.js'))
+app.use('/api/categories', require('./routes/categories.routes'))
+app.use('/api/typesPayment', require('./routes/typesPayment.routes'))
 
 // Esto se puede quitar?
 app.set('views', path.join(__dirname, 'views'));

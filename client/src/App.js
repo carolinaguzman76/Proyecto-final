@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
+/* ---- STYLING ----  */
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+/* ---- RDD COMPONENTS ----  */
 import { Switch, Route, Redirect } from 'react-router-dom'
 
+/* ---- UI COMPONENTS ----  */
 import NavBar from './components/auxiliary/NavBar'
+
 
 import Signup from './components/pages/auth/signup/Signup'
 import Profile from './components/pages/profile/Profile'
 import Login from './components/pages/auth/login/Login'
 
+// IMPORTACION COMPONENTES
+import TypesPaymentList from './components/pages/typesPaymentList/TypesPaymentList'
 import CategoriesList from './components/pages/categoriesList/CategoriesList'
-
-import MovimientsList from './components/pages/movementsList/MovementsList'
+import MovementsList from './components/pages/movementsList/MovementsList'
 import MovementDetails from './components/pages/movementDetails/MovementDetails'
 
 import AuthServices from './services/auth.services'
@@ -23,7 +28,7 @@ class App extends Component {
   constructor() {
     super()
     this.state = { loggedInUser: false }
-    this.services = new AuthServices()
+    this.authServices = new AuthServices()
   }
 
 
@@ -33,7 +38,7 @@ class App extends Component {
 
   setTheUser = userObj => this.setState({ loggedInUser: userObj })
   fetchUser = () => {
-    this.services.loggedin()
+    this.authServices.loggedin()
       .then(theUser => this.setState({ loggedInUser: theUser }))
       .catch(() => this.setState({ loggedInUser: false }))
   }
@@ -47,8 +52,9 @@ class App extends Component {
         <NavBar setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
 
         <Switch>
+          <Route path="/typesPaymentList" render={() => <TypesPaymentList loggedInUser={this.state.loggedInUser} />} />
           <Route path="/categoriesList" render={() => <CategoriesList loggedInUser={this.state.loggedInUser} />} />
-          <Route path="/list" render={() => <MovimientsList loggedInUser={this.state.loggedInUser} />} />
+          <Route path="/list" render={() => <MovementsList loggedInUser={this.state.loggedInUser} />} />
           <Route path="/details/:id" render={props => <MovementDetails {...props} />} />
           {/* <Route path="/budget" render={() => <BudgetsList loggedInUser={this.state.loggedInUser} />} /> */}
           <Route path="/signup" render={() => <Signup setTheUser={this.setTheUser} />} />

@@ -16,7 +16,7 @@ class MovementDetails extends Component {
     constructor(props) {
         super(props)
         this.state = { movement: {} }
-        this.services = new MovementsServices()
+        this.movemensServices = new MovementsServices()
 
         console.log('las props por defecto serían estas:', this.props)
     }
@@ -24,7 +24,7 @@ class MovementDetails extends Component {
     componentDidMount = () => this.getMovementDetails()
 
     getMovementDetails = () => {
-        this.services.getMovementDetails(this.props.match.params.id)
+        this.movemensServices.getMovementDetails(this.props.match.params.id)
             .then(oneMovement => this.setState({ movement: oneMovement }))
             .catch(err => console.log(err))
     }

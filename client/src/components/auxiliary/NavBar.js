@@ -12,11 +12,11 @@ class Navigation extends Component {
     constructor(props) {
         super(props)
         this.state = {}
-        this.services = new AuthServices()
+        this.authServices = new AuthServices()
     }
 
     logout = () => {
-        this.services.logout()
+        this.authServices.logout()
             .then(response => {
                 this.props.setTheUser(false)
             })
@@ -50,6 +50,7 @@ class Navigation extends Component {
                                 <Nav.Link as="div"> <Link to="/profile">Perfil</Link></Nav.Link>
                                 <Nav.Link as="div"> <Link to="/list">Movimientos</Link></Nav.Link>
                                 <Nav.Link as="div"> <Link to="/categoriesList">Categorias</Link></Nav.Link>
+                                <Nav.Link as="div"> <Link to="/typesPaymentList">Tipos de pago/cobro</Link></Nav.Link>
                                 <Nav.Link onClick={this.logout}>Cerrar sesión</Nav.Link>
                                 <Nav.Link as="small">{greeting}</Nav.Link>
                             </Nav>

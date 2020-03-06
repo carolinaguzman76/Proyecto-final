@@ -7,5 +7,5 @@ const typePaymentSchema = new Schema({
     timestamps: true
 })
 
-const typePaymentSchema = mongoose.model('Payment', typePaymentSchema)
-module.exports = typePaymentSchema
+const typePaymentModel = mongoose.model('TypePayment', typePaymentSchema)
+module.exports = typePaymentModel

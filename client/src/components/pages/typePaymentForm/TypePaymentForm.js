@@ -1,34 +1,35 @@
 import React, { Component } from 'react'
 
-import './CategoryForm.css'
+import './TypePaymentForm.css'
 
-import CategoriesServices from '../../../services/category.services'
+// SERVICIO TIPOS DE PAGO/COBRO
+import TypesPaymentServices from '../../../services/typePayment.services'
 
+// ELEMENTOS REACT BOOTSTRAP
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-import FilesServices from '../../../services/files.services'
 
-class CategoryForm extends Component {
+class TypePaymentForm extends Component {
 
     constructor(props) {
         super(props)
-        this.categoriesServices = new CategoriesServices()
-        this.filesServices = new FilesServices()
+        this.typesPaymentServices = new TypesPaymentServices()
         this.state = {
-            category: {
+            typePayment: {
                 name: ''
             }
         }
     }
 
+    // APERTURA Y CIERRE DE VENTANA MODAL
     finishAction = () => {
         this.props.closeModal()
         this.props.refreshList()
     }
 
-    postCategory = () => {
-        this.categoriesServices.postCategory(this.state.category)
+    postTypePayment = () => {
+        this.typesPaymentServices.postTypePayment(this.state.typePayment)
             .then(() => this.finishAction())
             .catch(err => console.log(err))
     }
@@ -36,13 +37,13 @@ class CategoryForm extends Component {
     handleChange = e => {
         let { name, value } = e.target
         this.setState({
-            category: { ...this.state.category, [name]: value }
+            typePayment: { ...this.state.typePayment, [name]: value }
         })
     }
 
     handleSubmit = e => {
         e.preventDefault()
-        this.postCategory()
+        this.postTypePayment()
     }
 
     render() {
@@ -51,13 +52,13 @@ class CategoryForm extends Component {
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
                     <Form.Label>Nombre</Form.Label>
-                    <Form.Control type="text" name="name" value={this.state.category.name} onChange={this.handleChange} />
+                    <Form.Control type="text" name="name" value={this.state.typePayment.name} onChange={this.handleChange} />
                 </Form.Group>
 
-                <Button variant="dark" type="submit">Crear nueva categoria</Button>
+                <Button variant="dark" type="submit">Crear nueva forma de pago/cobro</Button>
             </Form>
         )
     }
 }
 
-export default CategoryForm
+export default TypePaymentForm

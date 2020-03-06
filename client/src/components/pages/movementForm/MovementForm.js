@@ -3,11 +3,11 @@ import React, { Component } from 'react'
 import './MovementForm.css'
 
 import MovementsServices from '../../../services/movement.services'
+import FilesServices from '../../../services/files.services'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-import FilesServices from '../../../services/files.services'
 
 class MovementForm extends Component {
 

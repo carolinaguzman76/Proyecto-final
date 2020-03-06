@@ -21,13 +21,13 @@ class MovementsList extends Component {
             showmodal: false
         }
         //INSTANCIA DE LOS SERVICIOS DE MOVIMIENTOS
-        this.services = new MovementsServices()
+        this.movementsServices = new MovementsServices()
     }
 
     componentDidMount = () => this.getAllMovements()
 
     getAllMovements = () => {
-        this.services.getAllMovements()
+        this.movementsServices.getAllMovements()
             .then(allMovements => {
                 this.setState({ movements: allMovements })})
             .catch(err => console.log(err))
