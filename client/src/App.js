@@ -16,6 +16,7 @@ import Profile from './components/pages/profile/Profile'
 import Login from './components/pages/auth/login/Login'
 
 // IMPORTACION COMPONENTES
+import BudgetsList from './components/pages/budgetsList/BudgetsList'
 import TypesPaymentList from './components/pages/typesPaymentList/TypesPaymentList'
 import CategoriesList from './components/pages/categoriesList/CategoriesList'
 import MovementsList from './components/pages/movementsList/MovementsList'
@@ -52,14 +53,14 @@ class App extends Component {
         <NavBar setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
 
         <Switch>
+          <Route path="/profile" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to="/" />} />
+          <Route path="/signup" render={() => <Signup setTheUser={this.setTheUser} />} />
+          <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
+          <Route path="/budgetsList" render={() => <BudgetsList loggedInUser={this.state.loggedInUser} />} />
           <Route path="/typesPaymentList" render={() => <TypesPaymentList loggedInUser={this.state.loggedInUser} />} />
           <Route path="/categoriesList" render={() => <CategoriesList loggedInUser={this.state.loggedInUser} />} />
           <Route path="/list" render={() => <MovementsList loggedInUser={this.state.loggedInUser} />} />
           <Route path="/details/:id" render={props => <MovementDetails {...props} />} />
-          {/* <Route path="/budget" render={() => <BudgetsList loggedInUser={this.state.loggedInUser} />} /> */}
-          <Route path="/signup" render={() => <Signup setTheUser={this.setTheUser} />} />
-          <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
-          <Route path="/profile" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to="/" />} />
         </Switch>
 
         <h1>Si sale solo esto, estas en app</h1>

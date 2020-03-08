@@ -5,7 +5,7 @@ const Movement = require('../models/Movement.model')
 
 // BUSQUEDA TODOS LOS MOVIMIENTOS
 router.get('/getAllMovements', (req, res, next) => {
-  Movement.find()
+  Movement.find().sort({date:-1})
   .then(allMovements => res.json(allMovements))
   .catch(err => next(new Error(err)))
 })

@@ -51,6 +51,7 @@ class Navigation extends Component {
                                 <Nav.Link as="div"> <Link to="/list">Movimientos</Link></Nav.Link>
                                 <Nav.Link as="div"> <Link to="/categoriesList">Categorias</Link></Nav.Link>
                                 <Nav.Link as="div"> <Link to="/typesPaymentList">Tipos de pago/cobro</Link></Nav.Link>
+                                <Nav.Link as="div"> <Link to="/budgetsList">Presupuestos</Link></Nav.Link>
                                 <Nav.Link onClick={this.logout}>Cerrar sesión</Nav.Link>
                                 <Nav.Link as="small">{greeting}</Nav.Link>
                             </Nav>

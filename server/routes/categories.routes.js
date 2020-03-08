@@ -11,22 +11,38 @@ router.get('/getAllCategories', (req, res, next) => {
   .catch(err => next(new Error(err)))
 })
 
-// ALTA NUEVA CATEGORIA Y PRESUPUESTO CORRESPONDIENTE
+// BUSQUEDA TODOS LOS PRESUPUESTOS
+router.get('/getAllBudgets', (req, res, next) => {
+  Budget.find()
+  .then(allButgets => res.json(allButgets))
+  .catch(err => next(new Error(err)))
+})
+
+
+// ALTA NUEVA CATEGORIA Y SU PRESUPUESTO
 router.post('/categoryNew', (req, res, next) => {
-  Category.create(req.body)
+
+  let objectCategory = {
+    name: req.body.name, 
+    amount: 0
+  }
+
+  
+
+  Category.create(objectCategory)
     .then(oneCategory => res.json(oneCategory))
-    .catch(err => next(new Error(err)))
     .then(Budget.create(req.body))
     .then(oneBudget => res.json(oneBudget))
     .catch(err => next(new Error(err)))
   
 })
 
-// ELIMINAR UNA CATEGORIA
+// ELIMINAR UNA CATEGORIA Y SU PRESUPUESTO
 router.get('/deleteCategory/:id', (req, res, next) => {
   Category.findByIdAndDelete(req.params.id)
-    .then(() => res.json({status:'ok'}))
+    .then(deleted=>Budget.findOneAndDelete({name:deleted.name}))
+    .then(() => res.json({status:'ok'})
     .catch(err => next(new Error(err)))
-})
+)})
 
 module.exports = router

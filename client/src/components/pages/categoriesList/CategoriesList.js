@@ -53,8 +53,9 @@ class CategoriesList extends Component {
                 <h1>Aqui tiene que mostrar una lista de categorias</h1>
                 <h2>Las categorias te ayudan a organizar mejor los movimientos</h2>
                 <p>Recuerda que son obligatorias</p>
+                <p>Cuando des de alta una categoria se creara de forma automática un presupuesto con el mismo nombre</p>
 
-                {this.props.loggedInUser && <Button className="mb-20" variant="dark" onClick={this.openModal}>Alta nueva Categoria</Button>}
+                {this.props.loggedInUser && <Button className="mb-20" variant="dark" onClick={this.openModal}>Alta nueva Categoria/Presupuesto</Button>}
 
                 {this.state.categories.length ? (
                     <Row>

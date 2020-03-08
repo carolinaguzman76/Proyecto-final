@@ -23,6 +23,7 @@ app.use('/api/auth', require('./routes/auth.routes'))
 app.use('/api/movements', require('./routes/movements.routes'))
 app.use('/api/categories', require('./routes/categories.routes'))
 app.use('/api/typesPayment', require('./routes/typesPayment.routes'))
+// app.use('/api/budgets', require('./routes/typesPayment.routes'))
 
 // Esto se puede quitar?
 app.set('views', path.join(__dirname, 'views'));
