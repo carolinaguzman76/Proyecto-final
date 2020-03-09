@@ -22,7 +22,7 @@ class MovementForm extends Component {
                 name: '',
                 description: '',
                 amount: '',
-                category: [],
+                category: '',
                 date: '',
                 typePayment: '',
                 image: ''
@@ -104,10 +104,10 @@ class MovementForm extends Component {
                     <Form.Control type="text" name="category" value={this.state.movement.category} onChange={this.handleChange} />
                 </Form.Group> */}
                 <label>Categoria a la que pertenece:</label>
-                <select name="category">
+                <select name="category" value={this.state.movement.category} onChange={this.handleChange}>
                     <option>Seleccionar</option>
                 
-                    {this.state.categories.map(elm => <option key={elm._id} value={elm.name}>{elm.name}</option>)}
+                    {this.state.categories.map(elm => <option key={elm._id} >{elm.name} </option>)}
                 
                         
                 </select>

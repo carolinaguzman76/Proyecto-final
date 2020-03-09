@@ -4,10 +4,11 @@ const Schema = mongoose.Schema
 const categorySchema = new Schema({
     name: String,
     amount: Number,
-    budget: Number
+    budget: Number,
+    movements:[{type: Schema.Types.ObjectId, ref: 'Movement' }]
 }, {
     timestamps: true
 })
 
-const categoryModel = mongoose.model('Category', categorySchema)
-module.exports = categoryModel
+const Category = mongoose.model('Category', categorySchema)
+module.exports = Category

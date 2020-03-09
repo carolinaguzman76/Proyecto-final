@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const Movement = require('../models/Movement.model')
+const Category = require('../models/Category.model')
 
 // BUSQUEDA TODOS LOS MOVIMIENTOS
 router.get('/getAllMovements', (req, res, next) => {
@@ -12,6 +13,15 @@ router.get('/getAllMovements', (req, res, next) => {
 })
 
 // ALTA NUEVO MOVIMIENTO
+
+// COMO ESTABA HECHO
+// router.post('/new', (req, res, next) => {
+//   Movement.create(req.body)
+//     .then(oneMovement => res.json(oneMovement))
+//     .catch(err => next(new Error(err)))
+// })
+
+// TRAIDO DE MADRIZ DE CINE
 // router.get('/new',(req,res) => res.render('met/met-new'))
 
 // router.post('/new',uploadCloud.single("phototoupload"),(req,res) => {
@@ -19,7 +29,7 @@ router.get('/getAllMovements', (req, res, next) => {
 // let {name,description,place,date,hour} = req.body
 
 // let metId
- 
+
 //   Met.create({name,description,place,hour,date,path:req.file.secure_url,user:req.user._id})
 //       .then(theMet => metId=theMet._id)
 //       .then(x => {
@@ -32,8 +42,23 @@ router.get('/getAllMovements', (req, res, next) => {
 // })
 
 router.post('/new', (req, res, next) => {
-  Movement.create(req.body)
-    .then(oneMovement => res.json(oneMovement))
+  let { name, description, amount, date, typePayment, image, category } = req.body
+  let movementId
+
+  Category.findOne({name: req.body.category })
+    .then(category => {
+      Movement.create({ name, description, amount, date, typePayment, image, category: category._id })
+      .then(movement => {
+        console.log("esta es la categoria ....", category)
+        let addMovement = { $push: { movements: movement._id } }
+        Category.findByIdAndUpdate(category._id, addMovement, {new:true})
+          .then(oneMovement => res.json(oneMovement))
+          .catch(err => next(new Error(err)))
+      })
+
+    })
+    // .then(oneMovement => movementId = oneMovement._id)
+    
     .catch(err => next(new Error(err)))
 })
 
