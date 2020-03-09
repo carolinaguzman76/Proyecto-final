@@ -5,7 +5,7 @@ const movementSchema = new Schema({
     name: String,
     description: String,
     amount: Number,
-    category: String,
+    category: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
     date: Date,
     typePayment: String,
     image: String

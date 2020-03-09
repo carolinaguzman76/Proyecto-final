@@ -5,6 +5,7 @@ import './CategoriesList.css'
 // SERVICIO DE LAS CATEGORIAS
 import CategoriesServices from '../../../services/category.services'
 
+import CategoryCard from '../categoryCard/CategoryCard'
 import CategoryForm from '../categoryForm/CategoryForm'
 
 // IMPORTACION COMPONENTES REACT BOOTSTRAP
@@ -53,17 +54,17 @@ class CategoriesList extends Component {
                 <h1>Aqui tiene que mostrar una lista de categorias</h1>
                 <h2>Las categorias te ayudan a organizar mejor los movimientos</h2>
                 <p>Recuerda que son obligatorias</p>
-                <p>Cuando des de alta una categoria se creara de forma automática un presupuesto con el mismo nombre</p>
+                <p>No olvides añadir el importe de tu presupuesto</p>
 
-                {this.props.loggedInUser && <Button className="mb-20" variant="dark" onClick={this.openModal}>Alta nueva Categoria/Presupuesto</Button>}
+                {this.props.loggedInUser && <Button className="mb-20" variant="dark" onClick={this.openModal}>Alta nueva Categoria</Button>}
 
                 {this.state.categories.length ? (
                     <Row>
-                    
-                            <div>{this.state.categories.map((elm, idx) => <div style={{display: 'flex'}} key={idx}>{elm.name} <Button onClick={()=>this.deleteOneCategory(elm._id)}>Elimina</Button></div>)}
-                            </div>
-                            
+                    {this.state.categories.map(elm => <CategoryCard key={elm._id} {...elm} updatedList={this.getAllCategories} />)}
                     </Row>
+
+                
+                    
                 )
                     :
                     <p>UN POQUITO DE PACIENCIA...</p>

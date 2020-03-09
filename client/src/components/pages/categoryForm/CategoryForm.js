@@ -17,7 +17,8 @@ class CategoryForm extends Component {
         this.filesServices = new FilesServices()
         this.state = {
             category: {
-                name: ''
+                name: '',
+                budget: 0
             }
         }
     }
@@ -52,6 +53,8 @@ class CategoryForm extends Component {
                 <Form.Group>
                     <Form.Label>Nombre</Form.Label>
                     <Form.Control type="text" name="name" value={this.state.category.name} onChange={this.handleChange} />
+                    <Form.Label>Presupuesto</Form.Label>
+                    <Form.Control type="number" name="budget" value={this.state.category.budget} onChange={this.handleChange} />
                 </Form.Group>
 
                 <Button variant="dark" type="submit">Crear nueva categoria</Button>

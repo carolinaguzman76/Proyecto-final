@@ -25,7 +25,9 @@ class MovementDetails extends Component {
 
     getMovementDetails = () => {
         this.movemensServices.getMovementDetails(this.props.match.params.id)
-            .then(oneMovement => this.setState({ movement: oneMovement }))
+            .then(oneMovement =>{ 
+                console.log(oneMovement)
+                this.setState({ movement: oneMovement })})
             .catch(err => console.log(err))
     }
 
