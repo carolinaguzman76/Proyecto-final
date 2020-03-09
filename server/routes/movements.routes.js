@@ -14,33 +14,6 @@ router.get('/getAllMovements', (req, res, next) => {
 
 // ALTA NUEVO MOVIMIENTO
 
-// COMO ESTABA HECHO
-// router.post('/new', (req, res, next) => {
-//   Movement.create(req.body)
-//     .then(oneMovement => res.json(oneMovement))
-//     .catch(err => next(new Error(err)))
-// })
-
-// TRAIDO DE MADRIZ DE CINE
-// router.get('/new',(req,res) => res.render('met/met-new'))
-
-// router.post('/new',uploadCloud.single("phototoupload"),(req,res) => {
-
-// let {name,description,place,date,hour} = req.body
-
-// let metId
-
-//   Met.create({name,description,place,hour,date,path:req.file.secure_url,user:req.user._id})
-//       .then(theMet => metId=theMet._id)
-//       .then(x => {
-//         let addMeeting = {$push:{meeting:metId}}
-//         User.findByIdAndUpdate(req.user._id,addMeeting)
-//         .then(x=>res.redirect('/met'))
-//         .catch(err=>console.log(err))
-//       })
-//       .catch(err => console.log("Ha ocurrido un error creando encuentros en la base de datos",err))  
-// })
-
 router.post('/new', (req, res, next) => {
   let { name, description, amount, date, typePayment, image, category } = req.body
   let movementId
@@ -72,7 +45,7 @@ router.get('/deleteMovement/:id', (req, res, next) => {
 // DETALLES DE UN MOVIMIENTO
 router.get('/getOneMovement/:id', (req, res, next) => {
   Movement.findById(req.params.id)
-    .populate('category_id')
+    .populate('category')
     .then(oneMovement => res.json(oneMovement))
     .catch(err => next(new Error(err)))
 })

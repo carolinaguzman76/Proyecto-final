@@ -15,7 +15,7 @@ class MovementDetails extends Component {
 
     constructor(props) {
         super(props)
-        this.state = { movement: {} }
+        this.state = { movement: undefined }
         this.movemensServices = new MovementsServices()
 
         console.log('las props por defecto serían estas:', this.props)
@@ -25,30 +25,37 @@ class MovementDetails extends Component {
 
     getMovementDetails = () => {
         this.movemensServices.getMovementDetails(this.props.match.params.id)
-            .then(oneMovement =>{ 
+            .then(oneMovement => {
                 console.log(oneMovement)
-                this.setState({ movement: oneMovement })})
+                this.setState({ movement: oneMovement })
+            })
             .catch(err => console.log(err))
     }
 
     render() {
-
         return (
             <Container className="movement-details">
-                <h1>{this.state.movement.name}</h1>
-                <Row>
-                    <Col md={{ span: 4, offset: 1 }}>
-                        <hr></hr>
-                        <p>Descripción: {this.state.movement.description}</p>
-                        <p>Importe: {this.state.movement.amount}</p>
-                        <p>Date: {this.state.movement.date}</p>
-                        <p>Categoria: {this.state.movement.category}</p>
-                        <p>Tipo de pago/cobro: {this.state.movement.typePayment}</p>
-                    </Col>
-                    <Col md={{ span: 5, offset: 1 }}>
-                        <img src={this.state.movement.image} alt={this.state.movement.name}></img>
-                    </Col>
-                </Row>
+            {/* Object.entries(this.state.movement).length === 0 */}
+                {this.state.movement ? (
+                    <Row>
+                        <h1>{this.state.movement.name}</h1>
+                        <Col md={{ span: 4, offset: 1 }}>
+                            <hr></hr>
+                            <p>Descripción: {this.state.movement.description}</p>
+                            <p>Importe: {this.state.movement.amount}</p>
+                            <p>Date: {this.state.movement.date}</p>
+                            <p>Categoria: {this.state.movement.category.name}</p>
+                            <p>Tipo de pago/cobro: {this.state.movement.typePayment}</p>
+                        </Col>
+                        <Col md={{ span: 5, offset: 1 }}>
+                            <img src={this.state.movement.image} alt={this.state.movement.name}></img>
+                        </Col>
+                    </Row>
+                )
+                    :
+                    <p>UN POQUITO DE PACIENCIA...</p>
+
+                }
                 <Button as="div" variant="dark" size="sm">
                     <Link to="/list">Volver</Link>
                 </Button>
@@ -58,3 +65,4 @@ class MovementDetails extends Component {
 }
 
 export default MovementDetails
+
