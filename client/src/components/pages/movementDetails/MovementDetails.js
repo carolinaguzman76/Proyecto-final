@@ -35,7 +35,6 @@ class MovementDetails extends Component {
     render() {
         return (
             <Container className="movement-details">
-            {/* Object.entries(this.state.movement).length === 0 */}
                 {this.state.movement ? (
                     <Row>
                         <h1>{this.state.movement.name}</h1>

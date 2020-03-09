@@ -10,6 +10,7 @@ export default class Services {
     }
 
     getAllCategories = () => this.service.get('/getAllCategories').then(response => response.data)
+    getOneCategory = id => this.service.get(`/getOneCategory/${id}`).then(response => response.data)
     postCategory = category => this.service.post(`/categoryNew`, category).then(response => response.data)
     deleteCategory = id => this.service.get(`/deleteCategory/${id}`).then(response => response.data)
 }

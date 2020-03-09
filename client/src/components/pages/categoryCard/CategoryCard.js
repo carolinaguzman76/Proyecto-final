@@ -8,6 +8,8 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 
+import { Link } from 'react-router-dom'
+
 const CategoryCard = ({ name, amount, budget, _id, updatedList}) => {
 
     const services = new CategoriesServices()
@@ -25,6 +27,9 @@ const CategoryCard = ({ name, amount, budget, _id, updatedList}) => {
                     <div>{name}</div>
                     <div>{amount}</div>
                     <div>{budget}</div>
+                    <Button as="div" variant="dark" size="sm">
+                        <Link to={`/getOneCategory/${_id}`}>Saber más...</Link>
+                    </Button>
                     <Button as="div" variant="dark" size="sm" onClick={deleteOneCategory}>
                         Eliminar
                     </Button>

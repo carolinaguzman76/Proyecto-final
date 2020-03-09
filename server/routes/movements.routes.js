@@ -13,25 +13,19 @@ router.get('/getAllMovements', (req, res, next) => {
 })
 
 // ALTA NUEVO MOVIMIENTO
-
 router.post('/new', (req, res, next) => {
   let { name, description, amount, date, typePayment, image, category } = req.body
-  let movementId
 
   Category.findOne({name: req.body.category })
     .then(category => {
       Movement.create({ name, description, amount, date, typePayment, image, category: category._id })
       .then(movement => {
-        console.log("esta es la categoria ....", category)
         let addMovement = { $push: { movements: movement._id } }
         Category.findByIdAndUpdate(category._id, addMovement, {new:true})
           .then(oneMovement => res.json(oneMovement))
           .catch(err => next(new Error(err)))
       })
-
     })
-    // .then(oneMovement => movementId = oneMovement._id)
-    
     .catch(err => next(new Error(err)))
 })
 

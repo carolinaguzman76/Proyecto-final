@@ -28,7 +28,7 @@ const MovementCard = ({ name, amount, date, _id, updatedList }) => {
                     <div>{name}</div>
                     <div>{amount}</div>
                     <Button as="div" variant="dark" size="sm">
-                        <Link to={`/details/${_id}`}>Saber más...</Link>
+                        <Link to={`/details/${_id}`}>Saber mas...</Link>
                     </Button>
                     <Button as="div" variant="dark" size="sm" onClick={deleteOneMovement}>
                         Eliminar
