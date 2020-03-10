@@ -15,7 +15,9 @@ class CategoryBreakdown extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            movementsBreakdown: [],
+            category: {
+                movements:[]
+            },
             showmodal: false
         }
         //INSTANCIA DE LOS SERVICIOS DE CATEGORIAS
@@ -27,14 +29,17 @@ class CategoryBreakdown extends Component {
     getOneCategory = () => {
         console.log("buscando id", this.props.match.params.id)
         this.categoriesServices.getOneCategory(this.props.match.params.id)
-            .then(allMovements => {console.log("getonecategory", allMovements[0])
-                this.setState({ movementsBreakdown: allMovements })})
+            .then(oneCategory => {
+                console.log("getonecategory", oneCategory[0])
+                this.setState({ category: oneCategory[0] })
+
+            })
             .catch(err => console.log(err))
     }
 
     render() {
 
-        console.log("dentro del render", this.state.movementsBreakdown[0])
+        console.log("dentro del render", this.state.category)
         return (
             <Container>
 
@@ -42,9 +47,9 @@ class CategoryBreakdown extends Component {
 
                 <Button className="mb-20" variant="dark" href="/categoriesList">Categorias</Button>
 
-                {this.state.movementsBreakdown.length ? (
+                {this.state.category ? (
                     <Row>
-                        {this.state.movementsBreakdown[0].movements.map(elm => <MovementCard key={elm._id} {...elm} updatedList={this.getOneCategory} />)}
+                        {this.state.category.movements.map(elm => <MovementCard key={elm._id} {...elm} updatedList={this.getOneCategory} />)}
                     </Row>
                 )
                     :

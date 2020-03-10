@@ -46,7 +46,6 @@ class CategoriesList extends Component {
     openModal = () => this.setState({ showmodal: true })
     
     render() { 
-        console.log(this.state.categories)
 
         return (
             <Container>

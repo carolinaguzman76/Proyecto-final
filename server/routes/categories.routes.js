@@ -15,7 +15,8 @@ router.get('/getOneCategory/:id', (req, res, next) => {
   Category.find({ "_id": req.params.id }).sort({ date: -1 })
     .populate('movements')
     .then(foundMovements => {
-      console.log(foundMovements, "console del back")
+      console.log("estoy en getOneCategory")
+      console.log(foundMovements[0])
       res.json(foundMovements)
     })
     .catch(err => next(new Error(err)))
