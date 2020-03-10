@@ -5,6 +5,7 @@ import './MovementForm.css'
 import MovementsServices from '../../../services/movement.services'
 import FilesServices from '../../../services/files.services'
 import CategoriesServices from '../../../services/category.services'
+import TypesPaymentServices from '../../../services/typePayment.services'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -17,6 +18,7 @@ class MovementForm extends Component {
         this.movementServices = new MovementsServices()
         this.filesServices = new FilesServices()
         this.categoriesServices = new CategoriesServices()
+        this.typesPaymentServices = new TypesPaymentServices()
         this.state = {
             movement: {
                 name: '',
@@ -27,11 +29,15 @@ class MovementForm extends Component {
                 typePayment: '',
                 image: ''
             },
-            categories : []
+            categories : [],
+            typesPayment : []
         }
     }
 
-    componentDidMount = () => this.getAllCategories()
+    componentDidMount = () => {
+        this.getAllCategories()
+        this.getAllTypesPayment()
+    }
 
     finishAction = () => {
         this.props.closeModal()
@@ -79,6 +85,16 @@ class MovementForm extends Component {
             .catch(err => console.log(err))
     }
 
+    getAllTypesPayment = () => {
+        this.typesPaymentServices.getAllTypesPayment()
+            .then(allTypesPayment => {
+                console.log("TESTTTTT")
+                console.log(allTypesPayment)
+                this.setState({ typesPayment: allTypesPayment })
+            })
+            .catch(err => console.log(err))
+    }
+
     render() {
 
         return (
@@ -104,12 +120,16 @@ class MovementForm extends Component {
                     <Form.Control type="text" name="category" value={this.state.movement.category} onChange={this.handleChange} />
                 </Form.Group> */}
                 <label>Categoria a la que pertenece:</label>
-                <select name="category" value={this.state.movement.category} onChange={this.handleChange}>
+                <select name="category"  onChange={this.handleChange}>
                     <option>Seleccionar</option>
                 
-                    {this.state.categories.map(elm => <option key={elm._id} >{elm.name} </option>)}
+                    {this.state.categories.map(elm => <option value={elm._id} key={elm._id} >{elm.name} </option>)}
+                </select>
+                <label>Forma de pago/cobro aplicada:</label>
+                <select name="typePayment"  onChange={this.handleChange}>
+                    <option>Seleccionar</option>
                 
-                        
+                    {this.state.typesPayment.map(elm => <option value={elm._id} key={elm._id} >{elm.name} </option>)}
                 </select>
                 <Form.Group>
                     <Form.Label>Archivo</Form.Label>

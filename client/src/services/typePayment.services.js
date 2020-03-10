@@ -10,6 +10,7 @@ export default class Services {
     }
 
     getAllTypesPayment = () => this.service.get('/getAllTypesPayment').then(response => response.data)
+    getOneTypePayment = id => this.service.get(`/getOneTypePayment/${id}`).then(response => response.data)
     postTypePayment = typePayment => this.service.post(`/typePaymentNew`, typePayment).then(response => response.data)
     deleteTypePayment = id => this.service.get(`/deleteTypePayment/${id}`).then(response => response.data)
 }
