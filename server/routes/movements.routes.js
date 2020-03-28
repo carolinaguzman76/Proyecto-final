@@ -17,17 +17,25 @@ router.get('/getAllMovements', (req, res, next) => {
 // ALTA NUEVO MOVIMIENTO
 router.post('/new', (req, res, next) => {
   let { name, description, amount, date, typePayment, image, category } = req.body
-  let total
   console.log(req.body)
   Movement.create({ name, description, amount, date, typePayment: typePayment, image, category: category })
     .then(oneMovement => {
-      Category.findByIdAndUpdate(category, { $push: { movements: oneMovement._id } }, { new: true })
-        .then(theCategory => res.json(theCategory))
-        .catch(err => next(new Error(err)))
+      Category.findById(category)
+        .then(theCategory => {
+          const newTotal = theCategory.amount + amount
+          Category.findByIdAndUpdate(category, { $push: { movements: oneMovement._id }, $set: {amount: newTotal}}, { new: true })
+          .then(updatedCategory => console.log(updatedCategory))
+          .catch(err => next(new Error(err)))
+        })
+
       TypePayment.findByIdAndUpdate(typePayment, { $push: { movements: oneMovement._id } }, { new: true })
-        .then(thePayment => res.json(thePayment))
+        // .then(thePayment => console.log("sin res.json"))
         .catch(err => next(new Error(err)))
-    })
+
+        res.json(oneMovement)
+    }
+    
+    )
     .catch(err => next(new Error(err)))
 })
 

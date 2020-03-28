@@ -45,7 +45,7 @@ class CategoryBreakdown extends Component {
         return (
             <Container>
 
-                <h1>Estos son los movimientos que componen {}</h1>
+                <h1>Estos son los movimientos que componen </h1>
 
                 <Button className="mb-20" variant="dark" href="/categoriesList">Categorias</Button>
 

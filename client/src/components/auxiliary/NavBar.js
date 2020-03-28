@@ -48,13 +48,13 @@ class Navigation extends Component {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="ml-auto">
-                                <Nav.Link className="navLink"> <Link to="/">Inicio</Link></Nav.Link>
-                                <Nav.Link> <Link to="/profile">Perfil</Link></Nav.Link>
-                                <Nav.Link> <Link to="/list">Movimientos</Link></Nav.Link>
-                                <Nav.Link> <Link to="/categoriesList">Categorias</Link></Nav.Link>
-                                <Nav.Link> <Link to="/typesPaymentList">Tipos de pago/cobro</Link></Nav.Link>
-                                <Nav.Link onClick={this.logout}>Cerrar sesión</Nav.Link>
-                                <Nav.Link>{greeting}</Nav.Link>
+                                <Nav.Link as="div"> <Link to="/">Inicio</Link></Nav.Link>
+                                <Nav.Link as="div"> <Link to="/profile">Perfil</Link></Nav.Link>
+                                <Nav.Link as="div"> <Link to="/list">Movimientos</Link></Nav.Link>
+                                <Nav.Link as="div"> <Link to="/categoriesList">Categorias</Link></Nav.Link>
+                                <Nav.Link as="div"> <Link to="/typesPaymentList">Tipos de pago/cobro</Link></Nav.Link>
+                                <Nav.Link as="div" onClick={this.logout}>Cerrar sesión</Nav.Link>
+                                <Nav.Link as="div">{greeting}</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>
