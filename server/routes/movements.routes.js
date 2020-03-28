@@ -17,27 +17,19 @@ router.get('/getAllMovements', (req, res, next) => {
 // ALTA NUEVO MOVIMIENTO
 router.post('/new', (req, res, next) => {
   let { name, description, amount, date, typePayment, image, category } = req.body
-  console.log(req.body)
+  let movID
   Movement.create({ name, description, amount, date, typePayment: typePayment, image, category: category })
     .then(oneMovement => {
-      Category.findById(category)
-        .then(theCategory => {
-          const newTotal = theCategory.amount + amount
-          Category.findByIdAndUpdate(category, { $push: { movements: oneMovement._id }, $set: {amount: newTotal}}, { new: true })
-          .then(updatedCategory => console.log(updatedCategory))
-          .catch(err => next(new Error(err)))
-        })
-
-      TypePayment.findByIdAndUpdate(typePayment, { $push: { movements: oneMovement._id } }, { new: true })
-        // .then(thePayment => console.log("sin res.json"))
-        .catch(err => next(new Error(err)))
-
-        res.json(oneMovement)
-    }
-    
-    )
+      movID = oneMovement._id
+      res.json(oneMovement)
+      return Category.findById(category)
+    })
+    .then(theCategory => Category.findByIdAndUpdate(category, { $push: { movements: movID }, $set: { amount: parseInt(theCategory.amount, 10) + parseInt(amount, 10)} }, { new: true }))
+    .catch(err => next(new Error(err)))
+    .then(x => TypePayment.findByIdAndUpdate(typePayment, { $push: { movements: movID } }, { new: true }))
     .catch(err => next(new Error(err)))
 })
+
 
 // ELIMINAR UN MOVIMIENTO
 router.get('/deleteMovement/:id', (req, res, next) => {
