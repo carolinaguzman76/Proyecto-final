@@ -11,6 +11,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
+import Spinner from 'react-bootstrap/Spinner'
 
 class MovementsList extends Component {
 
@@ -44,9 +45,9 @@ class MovementsList extends Component {
 
                 <h1>Aqui tiene que mostrar una lista de movimientos</h1>
 
-                <Button className="mb-20" variant="dark" href="/categoriesList">Categorias</Button>
+                <Button className="btn"  href="/categoriesList">Categorias</Button>
 
-                {this.props.loggedInUser && <Button className="mb-20" variant="dark" onClick={this.openModal}>Alta nuevo movimiento</Button>}
+                {this.props.loggedInUser && <Button className="mb-btn" onClick={this.openModal}>Alta nuevo movimiento</Button>}
 
                 {this.state.movements.length ? (
                     <Row>
@@ -54,7 +55,7 @@ class MovementsList extends Component {
                     </Row>
                 )
                     :
-                    <p>UN POQUITO DE PACIENCIA...</p>
+                    <Spinner animation="grow" variant="info" />
 
                 }
 

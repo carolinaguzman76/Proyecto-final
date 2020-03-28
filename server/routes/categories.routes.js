@@ -16,8 +16,10 @@ router.get('/getOneCategory/:id', (req, res, next) => {
     .populate('movements')
     .then(foundMovements => {
       console.log("estoy en getOneCategory")
-      console.log(foundMovements[0])
+      console.log("esta es la posicion 0",foundMovements[0])
       res.json(foundMovements)
+      console.log("esto es foundMovements completo", foundMovements)
+      console.log("sacando el importe", foundMovements[0].movements[0].amount)
     })
     .catch(err => next(new Error(err)))
 })

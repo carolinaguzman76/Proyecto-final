@@ -9,6 +9,7 @@ import MovementCard from '../movementCard/MovementCard'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
+import Spinner from 'react-bootstrap/Spinner'
 
 class TypePaymentBreakdown extends Component {
 
@@ -53,7 +54,7 @@ class TypePaymentBreakdown extends Component {
                     </Row>
                 )
                     :
-                    <p>UN POQUITO DE PACIENCIA...</p>
+                    <Spinner animation="grow" variant="info" />
 
                 }
 

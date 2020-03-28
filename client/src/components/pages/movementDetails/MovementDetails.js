@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
+import Spinner from 'react-bootstrap/Spinner'
 
 import { Link } from 'react-router-dom'
 
@@ -32,6 +33,15 @@ class MovementDetails extends Component {
             .catch(err => console.log(err))
     }
 
+    deleteOneMovement = () => {
+        this.movemensServices.deleteMovement(this.props.match.params.id)
+        .then(elm => {
+            this.props.history.push('/list')
+        } )
+        .catch(err => console.log(err))
+    }
+
+
     render() {
         return (
             <Container className="movement-details">
@@ -45,6 +55,7 @@ class MovementDetails extends Component {
                             <p>Date: {this.state.movement.date}</p>
                             <p>Categoria: {this.state.movement.category.name}</p>
                             <p>Tipo de pago/cobro: {this.state.movement.typePayment}</p>
+                            <buttom onClick={this.deleteOneMovement}>Eliminar</buttom>
                         </Col>
                         <Col md={{ span: 5, offset: 1 }}>
                             <img src={this.state.movement.image} alt={this.state.movement.name}></img>
@@ -52,7 +63,7 @@ class MovementDetails extends Component {
                     </Row>
                 )
                     :
-                    <p>UN POQUITO DE PACIENCIA...</p>
+                    <Spinner animation="grow" variant="info" />
 
                 }
                 <Button as="div" variant="dark" size="sm">

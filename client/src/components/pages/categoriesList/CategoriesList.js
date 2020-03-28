@@ -13,6 +13,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
+import Spinner from 'react-bootstrap/Spinner'
 
 class CategoriesList extends Component {
 
@@ -66,7 +67,7 @@ class CategoriesList extends Component {
                     
                 )
                     :
-                    <p>UN POQUITO DE PACIENCIA...</p>
+                    <Spinner animation="grow" variant="info" />
 
                 }
 

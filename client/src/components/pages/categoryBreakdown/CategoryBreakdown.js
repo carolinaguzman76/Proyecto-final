@@ -9,6 +9,7 @@ import MovementCard from '../movementCard/MovementCard'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
+import Spinner from 'react-bootstrap/Spinner'
 
 class CategoryBreakdown extends Component {
 
@@ -40,10 +41,11 @@ class CategoryBreakdown extends Component {
     render() {
 
         console.log("dentro del render", this.state.category)
+    
         return (
             <Container>
 
-                <h1>Aqui tiene que mostrar una lista de movimientos de una sola categoria</h1>
+                <h1>Estos son los movimientos que componen {}</h1>
 
                 <Button className="mb-20" variant="dark" href="/categoriesList">Categorias</Button>
 
@@ -53,7 +55,7 @@ class CategoryBreakdown extends Component {
                     </Row>
                 )
                     :
-                    <p>UN POQUITO DE PACIENCIA...</p>
+                    <Spinner animation="grow" variant="info" />
 
                 }
 

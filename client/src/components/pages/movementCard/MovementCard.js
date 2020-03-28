@@ -2,40 +2,30 @@ import React from 'react'
 
 import './MovementCard.css'
 
-import MovementsServices from '../../../services/movement.services'
-
 import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-
-import { Link } from 'react-router-dom'
 
 const MovementCard = ({ name, amount, date, _id, updatedList }) => {
 
-    const services = new MovementsServices()
-
-    const deleteOneMovement = () => {
-        services.deleteMovement(_id)
-            .then(() => updatedList())
-            .catch(err => console.log("error", err))
-    }
+    let options = { year: 'numeric', month: 'long', day: 'numeric' }
+    let dateFormat = new Date(date).toLocaleDateString("es-ES", options)
 
     return (
-        <Col md={4}>
-            <Card className="card-rusa">
+
+        <Col md={12} className="cardMoviment">
+            <Card>
+                <Card.Header>{name}</Card.Header>
                 <Card.Body>
-                    <div>{date}</div>
-                    <div>{name}</div>
-                    <div>{amount}</div>
-                    <Button as="div" variant="dark" size="sm">
-                        <Link to={`/details/${_id}`}>Saber mas...</Link>
-                    </Button>
-                    <Button as="div" variant="dark" size="sm" onClick={deleteOneMovement}>
-                        Eliminar
-                    </Button>
+                    <Card.Title>{amount} euros</Card.Title>
+                    <Card.Text>
+                        {dateFormat}
+                    </Card.Text>
+                    <Card.Link href={`/details/${_id}`}>Saber mas...</Card.Link>
                 </Card.Body>
             </Card>
+            <Card></Card>
         </Col>
+
     )
 }
 

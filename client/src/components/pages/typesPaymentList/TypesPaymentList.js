@@ -12,6 +12,8 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
+import Spinner from 'react-bootstrap/Spinner'
+import ListGroup from 'react-bootstrap/ListGroup'
 
 class TypesPaymentList extends Component {
 
@@ -23,45 +25,53 @@ class TypesPaymentList extends Component {
         }
         this.typesPaymentsServices = new TypesPaymentServices()
     }
-    
+
     componentDidMount = () => this.getAllTypesPayment()
-    
+
     getAllTypesPayment = () => {
         this.typesPaymentsServices.getAllTypesPayment()
-        .then(allTypesPayment => this.setState({ typesPayment: allTypesPayment }))
-        .catch(err => console.log(err))
+            .then(allTypesPayment => this.setState({ typesPayment: allTypesPayment }))
+            .catch(err => console.log(err))
     }
-    
+
     deleteOneTypePayment = (id) => {
         this.typesPaymentsServices.deleteTypePayment(id)
-        .then(() => this.getAllTypesPayment())
-        .catch(err => console.log("error", err))
+            .then(() => this.getAllTypesPayment())
+            .catch(err => console.log("error", err))
     }
-    
+
     // APERTURA Y CIERRE VENTANA MODAL
     closeModal = () => this.setState({ showmodal: false })
     openModal = () => this.setState({ showmodal: true })
-    
-    render() { 
+
+    render() {
         console.log(this.state.typesPayment)
 
         return (
             <Container>
 
-                <h1>Aqui tiene que mostrar una lista de tipos de pago/cobro</h1>
+                <h3>Tipos de movimientos pago/cobro</h3>
+                <p>Utiliza cualquiera de estos tipos de pago/cobro para completar la información de tus movimientos.</p>
 
                 {this.props.loggedInUser && <Button className="mb-20" variant="dark" onClick={this.openModal}>Alta nuevo tipo</Button>}
 
                 {this.state.typesPayment.length ? (
                     <Row>
-                    
-                            <div>{this.state.typesPayment.map((elm, idx) => <div style={{display: 'flex'}} key={idx}>{elm.name} <Button onClick={()=>this.deleteOneTypePayment(elm._id)}>Eliminar</Button></div>)}
-                            </div>
-                            
+
+                        <ListGroup variant="flush">
+                        
+                        
+                            <ListGroup.Item>
+                            {this.state.typesPayment.map((elm, idx) => <div  className="listTypePayment" style={{ display: 'flex' }} key={idx}>{elm.name} <Button onClick={() => this.deleteOneTypePayment(elm._id)}>Eliminar</Button></div>)}
+                            </ListGroup.Item>
+                        </ListGroup>
+
+                        
+
                     </Row>
                 )
                     :
-                    <p>UN POQUITO DE PACIENCIA...</p>
+                    <Spinner animation="grow" variant="info" />
 
                 }
 
