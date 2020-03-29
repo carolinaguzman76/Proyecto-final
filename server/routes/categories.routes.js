@@ -30,7 +30,8 @@ router.post('/categoryNew', (req, res, next) => {
   let objectCategory = {
     name: req.body.name,
     amount: 0,
-    budget: req.body.budget
+    budget: req.body.budget,
+    economicNature: req.body.economicNature
   }
 
   Category.create(objectCategory)

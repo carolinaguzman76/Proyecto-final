@@ -5,8 +5,10 @@ const categorySchema = new Schema({
     name: String,
     amount: Number,
     budget: Number,
+    economicNature: String,
     movements:[{type: Schema.Types.ObjectId, ref: 'Movement' }]
-}, {
+}, 
+{
     timestamps: true
 })
 
