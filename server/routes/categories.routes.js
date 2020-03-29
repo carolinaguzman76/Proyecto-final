@@ -10,13 +10,39 @@ router.get('/getAllCategories', (req, res, next) => {
     .catch(err => next(new Error(err)))
 })
 
+// SUMA CATEGORIAS DE INGRESOS
+router.get('/income', (req, res, next) => {
+  Category.find({economicNature: 'ingresos'})
+  .then(allCategoriesIncome => {
+    let totalCategories = 0
+    for(i = 0; i < allCategoriesIncome.length; i++) {
+     totalCategories = totalCategories + allCategoriesIncome[i].amount
+    }
+    res.json({income: totalCategories})
+  } )
+  .catch(err => next(new Error(err)))
+})
+
+// SUMA CATEGORIAS DE GASTOS
+router.get('/expenses', (req, res, next) => {
+  Category.find({economicNature: 'gastos'})
+  .then(allCategoriesExpenses => {
+    let totalCategories = 0
+    for(i = 0; i < allCategoriesExpenses.length; i++) {
+     totalCategories = totalCategories +  allCategoriesExpenses[i].amount
+    }
+    res.json({expenses: totalCategories})
+  } )
+  .catch(err => next(new Error(err)))
+})
+
 // BUSQUEDA MOVIMIENTOS UNA CATEGORIA
 router.get('/getOneCategory/:id', (req, res, next) => {
   Category.find({ "_id": req.params.id }).sort({ date: -1 })
     .populate('movements')
     .then(foundMovements => {
       console.log("estoy en getOneCategory")
-      console.log("esta es la posicion 0",foundMovements[0])
+      console.log("esta es la posicion 0", foundMovements[0])
       res.json(foundMovements)
       console.log("esto es foundMovements completo", foundMovements)
       console.log("sacando el importe", foundMovements[0].movements[0].amount)
@@ -47,5 +73,7 @@ router.get('/deleteCategory/:id', (req, res, next) => {
       .catch(err => next(new Error(err)))
     )
 })
+
+
 
 module.exports = router
