@@ -31,7 +31,6 @@ class TypePaymentBreakdown extends Component {
         console.log("buscando id", this.props.match.params.id)
         this.typesPaymentServices.getOneTypePayment(this.props.match.params.id)
             .then(oneTypePayment => {
-                console.log("oneTypePayment", oneTypePayment[0])
                 this.setState({ typePayment: oneTypePayment[0] })
 
             })
@@ -40,7 +39,6 @@ class TypePaymentBreakdown extends Component {
 
     render() {
 
-        console.log("dentro del render", this.state.typePayment)
         return (
             <Container>
 

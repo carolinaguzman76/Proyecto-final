@@ -78,8 +78,6 @@ class MovementForm extends Component {
     getAllCategories = () => {
         this.categoriesServices.getAllCategories()
             .then(allCategories => {
-                console.log("TESTTTTT")
-                console.log(allCategories)
                 this.setState({ categories: allCategories })
             })
             .catch(err => console.log(err))
@@ -88,8 +86,6 @@ class MovementForm extends Component {
     getAllTypesPayment = () => {
         this.typesPaymentServices.getAllTypesPayment()
             .then(allTypesPayment => {
-                console.log("TESTTTTT")
-                console.log(allTypesPayment)
                 this.setState({ typesPayment: allTypesPayment })
             })
             .catch(err => console.log(err))

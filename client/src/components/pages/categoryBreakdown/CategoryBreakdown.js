@@ -28,10 +28,8 @@ class CategoryBreakdown extends Component {
     componentDidMount = () => this.getOneCategory()
 
     getOneCategory = () => {
-        console.log("buscando id", this.props.match.params.id)
         this.categoriesServices.getOneCategory(this.props.match.params.id)
             .then(oneCategory => {
-                console.log("getonecategory", oneCategory[0])
                 this.setState({ category: oneCategory[0] })
 
             })
@@ -39,8 +37,6 @@ class CategoryBreakdown extends Component {
     }
 
     render() {
-
-        console.log("dentro del render", this.state.category)
     
         return (
             <Container>

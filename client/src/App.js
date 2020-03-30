@@ -23,18 +23,28 @@ import MovementDetails from './components/pages/movementDetails/MovementDetails'
 import CategoryBreakdown from './components/pages/categoryBreakdown/CategoryBreakdown'
 
 import AuthServices from './services/auth.services'
+import CategoriesServices from './services/category.services'
 
 class App extends Component {
 
   constructor() {
     super()
-    this.state = { loggedInUser: false }
+    this.state = {
+      loggedInUser: false,
+      income: 0,
+      expenses: 0
+    }
     this.authServices = new AuthServices()
+    this.categoriesServices = new CategoriesServices()
   }
 
 
   // componentDidUpdate = (prevProps, prevState) => console.log("El estado de App se ha actualizado:", this.state)
-  componentDidMount = () => this.fetchUser()
+  componentDidMount = () => {
+    this.fetchUser()
+    this.totalCategoriesIncome()
+    this.totalCategoriesExpenses()
+  }
 
 
   setTheUser = userObj => this.setState({ loggedInUser: userObj })
@@ -44,6 +54,17 @@ class App extends Component {
       .catch(() => this.setState({ loggedInUser: false }))
   }
 
+  totalCategoriesIncome = () => {
+    this.categoriesServices.getIncome()
+      .then(totalIncome => this.setState({ income: totalIncome }))
+      .catch(err => console.log(err))
+  }
+
+  totalCategoriesExpenses = () => {
+    this.categoriesServices.getExpenses()
+      .then(totalExpenses => this.setState({ expenses: totalExpenses }))
+      .catch(err => console.log(err))
+  }
 
   render() {
     console.log(this.state.loggedInUser)
@@ -53,7 +74,7 @@ class App extends Component {
         <NavBar setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
 
         <Switch>
-          <Route path="/profile" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to="/" />} />
+          <Route path="/profile" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} {...this.state.income} {...this.state.expenses} /> : <Redirect to="/" />} />
           <Route path="/signup" render={() => <Signup setTheUser={this.setTheUser} />} />
           <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
           <Route path="/typesPaymentList" render={() => <TypesPaymentList loggedInUser={this.state.loggedInUser} />} />
