@@ -28,11 +28,13 @@ class CategoryBreakdown extends Component {
     componentDidMount = () => this.getOneCategory()
 
     getOneCategory = () => {
+
         this.categoriesServices.getOneCategory(this.props.match.params.id)
             .then(oneCategory => {
                 this.setState({ category: oneCategory[0] })
 
             })
+            
             .catch(err => console.log(err))
     }
 

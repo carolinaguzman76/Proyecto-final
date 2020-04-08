@@ -44,6 +44,7 @@ class Navigation extends Component {
                             className="d-inline-block align-top"
                             alt="React Bootstrap logo"
                         />
+
                         <Navbar.Brand href="#home">Ahorra, coño!</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">

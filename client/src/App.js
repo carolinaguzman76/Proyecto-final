@@ -4,18 +4,21 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+/* ---- AMCHARTS ----*/
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+
 /* ---- RDD COMPONENTS ----  */
 import { Switch, Route, Redirect } from 'react-router-dom'
 
 /* ---- UI COMPONENTS ----  */
 import NavBar from './components/auxiliary/NavBar'
-
-
 import Signup from './components/pages/auth/signup/Signup'
 import Profile from './components/pages/profile/Profile'
 import Login from './components/pages/auth/login/Login'
 
-// IMPORTACION COMPONENTES
+/* ---- CUSTOMS COMPONENTS ---- */
 import TypesPaymentList from './components/pages/typesPaymentList/TypesPaymentList'
 import CategoriesList from './components/pages/categoriesList/CategoriesList'
 import MovementsList from './components/pages/movementsList/MovementsList'
@@ -24,6 +27,8 @@ import CategoryBreakdown from './components/pages/categoryBreakdown/CategoryBrea
 
 import AuthServices from './services/auth.services'
 import CategoriesServices from './services/category.services'
+
+am4core.useTheme(am4themes_animated);
 
 class App extends Component {
 
@@ -68,13 +73,14 @@ class App extends Component {
 
   render() {
     console.log(this.state.loggedInUser)
+    console.log("esto es en el render", this.state.income)
 
     return (
       <>
         <NavBar setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
 
         <Switch>
-          <Route path="/profile" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} {...this.state.income} {...this.state.expenses} /> : <Redirect to="/" />} />
+          <Route path="/profile" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} {...this.state.income} {...this.state.expenses}/> : <Redirect to="/" />} />
           <Route path="/signup" render={() => <Signup setTheUser={this.setTheUser} />} />
           <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
           <Route path="/typesPaymentList" render={() => <TypesPaymentList loggedInUser={this.state.loggedInUser} />} />
@@ -86,6 +92,7 @@ class App extends Component {
 
         <h1>Si sale solo esto, estas en app</h1>
       </>
+      
 
     )
   }
