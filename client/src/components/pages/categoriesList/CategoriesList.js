@@ -5,15 +5,14 @@ import './CategoriesList.css'
 // SERVICIO DE LAS CATEGORIAS
 import CategoriesServices from '../../../services/category.services'
 
-import CategoryCard from '../categoryCard/CategoryCard'
-import CategoryForm from '../categoryForm/CategoryForm'
-
 // IMPORTACION COMPONENTES REACT BOOTSTRAP
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Spinner from 'react-bootstrap/Spinner'
+import CategoryCard from '../categoryCard/CategoryCard'
+import CategoryForm from '../categoryForm/CategoryForm'
 
 class CategoriesList extends Component {
 

@@ -6,7 +6,6 @@ import './App.css';
 
 /* ---- AMCHARTS ----*/
 import * as am4core from "@amcharts/amcharts4/core";
-import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 /* ---- RDD COMPONENTS ----  */
@@ -90,7 +89,6 @@ class App extends Component {
           <Route path="/details/:id" render={props => <MovementDetails {...props} />} />
         </Switch>
 
-        <h1>Si sale solo esto, estas en app</h1>
       </>
       
 
