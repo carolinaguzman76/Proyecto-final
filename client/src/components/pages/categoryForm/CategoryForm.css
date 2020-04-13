@@ -1,0 +1,10 @@
+.economicNature {
+    border: solid 1px lightgrey;
+    margin-top: 40px;
+    padding: 15px;
+}
+
+.textParenthesis {
+    font-size: 0.8em;
+    line-height: 0.1em;
+}

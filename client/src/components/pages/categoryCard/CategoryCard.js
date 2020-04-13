@@ -38,3 +38,4 @@ const CategoryCard = ({ name, amount, budget, _id, updatedList}) => {
 }
 
 export default CategoryCard
+

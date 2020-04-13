@@ -6,6 +6,9 @@ import CategoriesServices from '../../../services/category.services'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+// import InputGroup from 'react-bootstrap/InputGroup'
+// import FormControl from 'react-bootstrap/FormControl'
+
 
 import FilesServices from '../../../services/files.services'
 
@@ -18,7 +21,8 @@ class CategoryForm extends Component {
         this.state = {
             category: {
                 name: '',
-                budget: 0
+                budget: 0,
+                economicNature: ''
             }
         }
     }
@@ -57,6 +61,16 @@ class CategoryForm extends Component {
                     <Form.Control type="number" name="budget" value={this.state.category.budget} onChange={this.handleChange} />
                 </Form.Group>
 
+                <div key="economicNature" className="mb-3  economicNature">
+                <p>Indica la naturaleza de la categoría.</p>
+                <p className="textParenthesis" >(Marca solo una opción)</p>
+                    <Form.Check type="checkbox" name="economicNature" id="checkboxExpenses" value="gastos" label="gastos" onChange={this.handleChange}/>
+
+                    <Form.Check type="checkbox" name="economicNature" id="checkboxIncome" value="ingresos" label="ingresos" onChange={this.handleChange}/>
+                </div>
+                
+
+                
                 <Button variant="dark" type="submit">Crear nueva categoria</Button>
             </Form>
         )

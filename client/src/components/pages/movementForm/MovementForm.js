@@ -111,10 +111,7 @@ class MovementForm extends Component {
                     <Form.Label>Fecha</Form.Label>
                     <Form.Control type="date" name="date" value={this.state.movement.date} onChange={this.handleChange} />
                 </Form.Group>
-                {/* <Form.Group>
-                    <Form.Label>Categoria</Form.Label>
-                    <Form.Control type="text" name="category" value={this.state.movement.category} onChange={this.handleChange} />
-                </Form.Group> */}
+               
                 <label>Categoria a la que pertenece:</label>
                 <select name="category"  onChange={this.handleChange}>
                     <option>Seleccionar</option>
@@ -130,8 +127,6 @@ class MovementForm extends Component {
                 <Form.Group>
                     <Form.Label>Archivo</Form.Label>
                     <Form.Control type="file" name="image" onChange={this.handleFileUpload} />
-
-                    {/* <Form.Control type="file" name="image" value={this.state.movement.image} onChange={this.handleChange} /> */}
                 </Form.Group>
 
                 <Button variant="dark" type="submit">Crear nuevo movimiento</Button>

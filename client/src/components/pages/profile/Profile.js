@@ -51,8 +51,6 @@ const Profile = props => {
 
                 <BarGraphic></BarGraphic>
 
-                <Button className="mb-20" variant="dark" href="/budget">Presupuestos</Button>
-
             </Container>
         </>
     )
