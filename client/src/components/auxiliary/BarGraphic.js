@@ -76,8 +76,15 @@ class BarGraphic extends Component {
 
     createSeries("budget", "Presupuesto");
     createSeries("amount", "Saldo periodo");
+    
 
   }
+
+  componentWillUnmount = () => {
+    this.chart.dispose()
+  }
+
+  
 
   render() {
     return (

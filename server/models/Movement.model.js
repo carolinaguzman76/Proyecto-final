@@ -8,7 +8,7 @@ const movementSchema = new Schema({
     category: { type: Schema.Types.ObjectId, ref: 'Category' },
     date: Date,
     typePayment: { type: Schema.Types.ObjectId, ref: 'TypePayment' },
-    image: String
+    imageUrl: String
 }, {
     timestamps: true
 })

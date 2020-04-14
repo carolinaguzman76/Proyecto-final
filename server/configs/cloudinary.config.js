@@ -3,14 +3,14 @@ const cloudinaryStorage = require('multer-storage-cloudinary');
 const multer = require('multer');
 
 cloudinary.config({
-    cloud_name: process.env.cloudName,
-    api_key: process.env.cloudKey,
-    api_secret: process.env.cloudSecret
+    cloud_name: process.env.Cloud_name,
+    api_key: process.env.API_Key,
+    api_secret: process.env.API_Secret
 });
 
 const storage = cloudinaryStorage({
     cloudinary,
-    folder: 'coasters',
+    folder: 'movements',
     allowedFormats: ['jpg', 'png'],
     filename: function (req, res, cb) {
         cb(null, res.originalname);
@@ -19,3 +19,4 @@ const storage = cloudinaryStorage({
 
 const uploader = multer({ storage });
 module.exports = uploader;
+

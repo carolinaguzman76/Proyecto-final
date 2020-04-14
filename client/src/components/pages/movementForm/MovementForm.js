@@ -27,7 +27,7 @@ class MovementForm extends Component {
                 category: '',
                 date: '',
                 typePayment: '',
-                image: ''
+                imageUrl: ''
             },
             categories : [],
             typesPayment : []
@@ -63,13 +63,16 @@ class MovementForm extends Component {
     }
 
     handleFileUpload = e => {
+        e.persist()
         const uploadData = new FormData()
-        uploadData.append("image", e.target.files[0])
+        uploadData.append("imageUrl", e.target.files[0])
         this.filesServices.handleUpload(uploadData)
             .then(response => {
-                console.log('Subida de archivo finalizada! La URL de Cloudinray es: ', response.secure_url)
+                console.log("response", response)
+                console.log('Subida de archivo finalizada! La URL de Cloudinray es: kkkk', response.secure_url)
+                console.log("esto es e.target.files de 0", e.target.files[0])
                 this.setState({
-                    movement: { ...this.state.movement, image: response.secure_url }
+                    movement: { ...this.state.movement, imageUrl: response.secure_url }
                 })
             })
             .catch(err => console.log(err))
@@ -126,7 +129,7 @@ class MovementForm extends Component {
                 </select>
                 <Form.Group>
                     <Form.Label>Archivo</Form.Label>
-                    <Form.Control type="file" name="image" onChange={this.handleFileUpload} />
+                    <Form.Control type="file" name="imageUrl" onChange={this.handleFileUpload} />
                 </Form.Group>
 
                 <Button variant="dark" type="submit">Crear nuevo movimiento</Button>

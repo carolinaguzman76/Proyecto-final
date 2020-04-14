@@ -21,7 +21,7 @@ const Profile = props => {
         return balance
     }
 
-    let balance = balanceCategories < props.income / 2 && balanceCategories >= props.income / 4 ? <p>Donde vas loco que te has gastado la mitad de tu pasta!</p> :
+    let messageBalance = balanceCategories < props.income / 2 && balanceCategories >= props.income / 4 ? <p>Donde vas loco que te has gastado la mitad de tu pasta!</p> :
     balanceCategories < props.income / 4 ? <p>Activado nivel: tieso</p> :
         <p className="messageMotivating">Asegurate que te dura todo el mes, que tienes la mano muy suelta...</p>
 
@@ -39,7 +39,7 @@ const Profile = props => {
 
                 <h3>Este es tu saldo {balanceCategories()}</h3>
 
-                {balance}
+                {messageBalance}
 
                 <Button className="mb-20" variant="dark" href="/list">Movimientos</Button>
 

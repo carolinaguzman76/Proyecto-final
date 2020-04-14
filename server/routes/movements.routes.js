@@ -16,9 +16,9 @@ router.get('/getAllMovements', (req, res, next) => {
 
 // ALTA NUEVO MOVIMIENTO
 router.post('/new', (req, res, next) => {
-  let { name, description, amount, date, typePayment, image, category } = req.body
+  let { name, description, amount, date, typePayment, imageUrl, category } = req.body
   let movID
-  Movement.create({ name, description, amount, date, typePayment: typePayment, image, category: category })
+  Movement.create({ name, description, amount, date, typePayment: typePayment, imageUrl, category: category })
     .then(oneMovement => {
       movID = oneMovement._id
       res.json(oneMovement)

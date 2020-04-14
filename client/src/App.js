@@ -70,9 +70,10 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
+  
+
   render() {
     console.log(this.state.loggedInUser)
-    console.log("esto es en el render", this.state.income)
 
     return (
       <>

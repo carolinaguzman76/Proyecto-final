@@ -57,7 +57,7 @@ class MovementDetails extends Component {
                             <buttom onClick={this.deleteOneMovement}>Eliminar</buttom>
                         </Col>
                         <Col md={{ span: 5, offset: 1 }}>
-                            <img src={this.state.movement.image} alt={this.state.movement.name}></img>
+                            <img src={this.state.movement.imageUrl} alt={this.state.movement.name}></img>
                         </Col>
                     </Row>
                 )
