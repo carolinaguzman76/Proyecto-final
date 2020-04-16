@@ -7,7 +7,9 @@ import Nav from 'react-bootstrap/Nav'
 
 import AuthServices from '../../services/auth.services'
 
-import { Link } from 'react-router-dom'
+import { Link, withRouter} from 'react-router-dom'
+
+
 
 class Navigation extends Component {
 
@@ -21,6 +23,7 @@ class Navigation extends Component {
         this.authServices.logout()
             .then(response => {
                 this.props.setTheUser(false)
+                this.props.history.push("/login")
             })
             .catch(err => console.log(err))
     }
@@ -28,7 +31,7 @@ class Navigation extends Component {
 
     render() {
 
-        const greeting = this.props.loggedInUser ? <>Hola, {this.props.loggedInUser.username}</> : <>Hola, invitad@</>
+        const greeting = this.props.loggedInUser ? <>Hola, {this.props.loggedInUser.username}</> : <>Hola, ahorrador!</>
 
 
         return (
@@ -79,4 +82,4 @@ class Navigation extends Component {
     }
 }
 
-export default Navigation
+export default withRouter(Navigation)

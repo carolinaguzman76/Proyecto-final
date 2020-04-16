@@ -6,9 +6,6 @@ import CategoriesServices from '../../../services/category.services'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-// import InputGroup from 'react-bootstrap/InputGroup'
-// import FormControl from 'react-bootstrap/FormControl'
-
 
 import FilesServices from '../../../services/files.services'
 

@@ -23,18 +23,6 @@ router.get('/income', (req, res, next) => {
   .catch(err => next(new Error(err)))
 })
 
-// // SUMA CATEGORIAS DE INGRESOS
-// router.get('/income', (req, res, next) => {
-//   Category.find({economicNature: 'ingresos'})
-//   let totalCategoriesIncome = 0
-//   .then(allCategoriesIncome => {
-//     totalCategoriesIncome = allCategoriesIncome.reduce(reducer)
-//     }
-//     res.json({income: totalCategoriesIncome})
-//   } )
-//   .catch(err => next(new Error(err)))
-// })
-
 // SUMA CATEGORIAS DE GASTOS
 router.get('/expenses', (req, res, next) => {
   Category.find({economicNature: 'gastos'})

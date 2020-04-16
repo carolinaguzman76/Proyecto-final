@@ -16,6 +16,7 @@ import NavBar from './components/auxiliary/NavBar'
 import Signup from './components/pages/auth/signup/Signup'
 import Profile from './components/pages/profile/Profile'
 import Login from './components/pages/auth/login/Login'
+import Start from './components/pages/start/Start'
 
 /* ---- CUSTOMS COMPONENTS ---- */
 import TypesPaymentList from './components/pages/typesPaymentList/TypesPaymentList'
@@ -70,7 +71,7 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
-  
+
 
   render() {
     console.log(this.state.loggedInUser)
@@ -80,7 +81,8 @@ class App extends Component {
         <NavBar setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
 
         <Switch>
-          <Route path="/profile" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} {...this.state.income} {...this.state.expenses}/> : <Redirect to="/" />} />
+          
+          <Route path="/profile" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} {...this.state.income} {...this.state.expenses} /> : <Redirect to="/" />} />
           <Route path="/signup" render={() => <Signup setTheUser={this.setTheUser} />} />
           <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
           <Route path="/typesPaymentList" render={() => <TypesPaymentList loggedInUser={this.state.loggedInUser} />} />
@@ -88,10 +90,11 @@ class App extends Component {
           <Route path="/getOneCategory/:id" render={props => <CategoryBreakdown {...props} />} />
           <Route path="/list" render={() => <MovementsList loggedInUser={this.state.loggedInUser} />} />
           <Route path="/details/:id" render={props => <MovementDetails {...props} />} />
+          <Route path="/" render={() => <Start setTheUser={this.setTheUser} />} />
         </Switch>
 
       </>
-      
+
 
     )
   }
