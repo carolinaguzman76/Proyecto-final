@@ -9,6 +9,7 @@ const favicon      = require('serve-favicon');
 const hbs          = require('hbs');
 const path         = require('path');
 
+
 const app = express();
 
 // // Configs
@@ -24,6 +25,12 @@ app.use('/api/movements', require('./routes/movements.routes'))
 app.use('/api/categories', require('./routes/categories.routes'))
 app.use('/api/typesPayment', require('./routes/typesPayment.routes'))
 app.use('/api/files', require('./routes/files.routes'))
+
+
+// QUITAR DESPUES DE TERMINAR PRUEBAS
+app.use('/api/test', require('./routes/test.routes'))
+
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

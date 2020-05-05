@@ -9,6 +9,7 @@ const cors = require('cors')
 
 
 
+
 module.exports = app => {
 
     const app_name = require('../package.json').name;
@@ -19,6 +20,7 @@ module.exports = app => {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
+    
 
     // Express View engine setup
     app.use(require('node-sass-middleware')({

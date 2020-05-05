@@ -9,7 +9,7 @@ export default class Services {
         })
     }
 
-    getAllMovements = () => this.service.get('/getAllMovements').then(response => response.data)
+    getAllMovements = (year, month, day) => this.service.get('/getAllMovements').then(response => response.data)
     getMovementDetails = id => this.service.get(`/getOneMovement/${id}`).then(response => response.data)
     postMovement = movement => this.service.post(`/new`, movement).then(response => response.data)
     deleteMovement = id => this.service.get(`/deleteMovement/${id}`).then(response => response.data)

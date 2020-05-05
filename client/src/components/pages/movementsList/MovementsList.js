@@ -27,7 +27,7 @@ class MovementsList extends Component {
 
     componentDidMount = () => this.getAllMovements()
 
-    getAllMovements = () => {
+    getAllMovements = (year, month, day) => {
         this.movementsServices.getAllMovements()
             .then(allMovements => {
                 this.setState({ movements: allMovements })})
